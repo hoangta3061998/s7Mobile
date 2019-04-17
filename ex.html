@@ -6,18 +6,18 @@
 </head>
 <body>
 <script>
-    function Mobile(name , pin) {
-        this.name = name ;
+    function Mobile(name, pin) {
+        this.name = name;
         this.pin = pin;
         this.message = "";
         this.inbox = [];
         this.outbox = [];
         this.status = true;
         this.checkStatus = function () {
-            if(this.status === true) {
-                console.log("On" +this.pin + "%")
+            if (this.status === true) {
+                console.log("On" + this.pin + "%")
             } else {
-                console.log("Off" +this.pin + "%")
+                console.log("Off" + this.pin + "%")
             }
         }
         this.turnOn = function () {
@@ -42,23 +42,37 @@
             }
         }
         this.sendMessage = function (Mobile) {
-            Mobile.inbox.push(this.message);
-            this.outbox.push(this.message);
-            this.pin--;
+            if (this.status === true) {
+                Mobile.inbox.push(this.message);
+                this.outbox.push(this.message);
+                this.pin--;
+            } else {
+                alert("Phone is off");
+            }
         }
         this.getInbox = function () {
-            console.log(this.inbox);
-            this.pin--;
+            if (this.status === true) {
+                console.log(this.inbox);
+                this.pin--;
+            } else {
+                alert("Phone is off");
+            }
         }
         this.getOutbox = function () {
-
-            console.log(this.outbox);
-            this.pin--;
+            if (this.status === true) {
+                console.log(this.outbox);
+                this.pin--;
+            } else {
+                alert("Phone is off");
+            }
         }
     }
-    var iphone = new Mobile(iphone,100);
-    var samsung = new Mobile(samsung , 100);
-    
+
+    var iphone = new Mobile(iphone, 100);
+    var samsung = new Mobile(samsung, 100);
+    iphone.writeMessage("blabla");
+    iphone.sendMessage(samsung);
+    samsung.getInbox();
 
 
 </script>
