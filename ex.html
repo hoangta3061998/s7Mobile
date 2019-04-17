@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Mobile(name , pin) {
+        this.name = name ;
+        this.pin = pin;
+        this.message = "";
+        this.inbox = [];
+        this.outbox = [];
+        this.status = true;
+        this.checkStatus = function () {
+            if(this.status === true) {
+                console.log("On" +this.pin + "%")
+            } else {
+                console.log("Off" +this.pin + "%")
+            }
+        }
+        this.turnOn = function () {
+            this.status = true;
+            this.pin--;
+        }
+        this.turnOff = function () {
+            this.status = false;
+            this.pin--;
+        }
+        this.chargeBattery = function () {
+            while (this.pin < 100) {
+                this.pin++;
+            }
+        }
+        this.writeMessage = function (message) {
+            if (this.status === true) {
+                this.message = message;
+                this.pin--;
+            } else {
+                alert("Phone is off");
+            }
+        }
+        this.sendMessage = function (Mobile) {
+            Mobile.inbox.push(this.message);
+            this.outbox.push(this.message);
+            this.pin--;
+        }
+        this.getInbox = function () {
+            console.log(this.inbox);
+            this.pin--;
+        }
+        this.getOutbox = function () {
+
+            console.log(this.outbox);
+            this.pin--;
+        }
+    }
+    var iphone = new Mobile(iphone,100);
+    var samsung = new Mobile(samsung , 100);
+    
+
+
+</script>
+</body>
+</html>
